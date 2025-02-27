@@ -5,11 +5,14 @@ const app = express();
 
 import dotenv from "dotenv" 
 import movieRouter from "../router/movie.router";
+import path from "path";
 
 dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/avatar", express.static(path.join(__dirname, "../avatar")));
 //Define a custom error interface
 interface CustomError extends Error {
   statusCode?: number;
