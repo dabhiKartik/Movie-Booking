@@ -32,7 +32,21 @@ export const validMobileNumber = (mobileNumber: string) => {
 };
 
 export const validDate =(releaseDate: string )=>{
-if(!validator.isDate(releaseDate,{format:'DD/MM/YYYY',strictMode:true})) throw new Error("please provide valid Date formate")
+if(!validator.isDate(releaseDate,{format:'DD-MM-YYYY',strictMode:true})) throw new Error("please provide valid Date formate")
     return releaseDate;
 }  
+
+
+// Validates 12-hour time format with AM/PM (h:mm:ss AM/PM)
+ 
+  export  const isValid12HourFormat = (time: string): boolean => {
+    const timeRegex = /^(0?[1-9]|1[0-2]):[0-5]\d(:[0-5]\d)?\s?[APap][mM]$/;
+    return timeRegex.test(time);
+  }
+
+
+
+
+
+
 

@@ -1,13 +1,27 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema, Document, Model } from "mongoose";
 
-const showSchema = new mongoose.Schema({
-  movie: { type: mongoose.Schema.Types.ObjectId, ref: "Movie", required: true },
-  theater: { type: mongoose.Schema.Types.ObjectId, ref: "Theater", required: true },
-  screenNumber: { type: Number, required: true },
-  showTime: { type: Date, required: true },
-  price: { type: Number, required: true },
-  availableSeats: { type: Number, required: true },
-  bookedSeats: [{ type: Number }] 
-}, { timestamps: true });
+export interface IShow {
+    movie: mongoose.Schema.Types.ObjectId;
+    theater: mongoose.Schema.Types.ObjectId;
+    screenNumber: number;
+    showDate: Date;
+    showTime: string;
+}
 
-module.exports = mongoose.model("Show", showSchema);
+export interface IShowDocument extends IShow, Document {
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+const showSchema = new mongoose.Schema<IShowDocument>(
+    {
+        movie: { type: Schema.Types.ObjectId, ref: "Movie", required: true },
+        theater: { type: Schema.Types.ObjectId, ref: "Theater", required: true },
+        screenNumber: { type: Number, required: true },
+        showDate: { type: Date, required: true },
+        showTime: { type: String, required: true },
+    },
+    { timestamps: true }
+);
+
+export const Show: Model<IShowDocument> = mongoose.model<IShowDocument>("Show", showSchema);
