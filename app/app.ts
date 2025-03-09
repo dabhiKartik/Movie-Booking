@@ -8,6 +8,7 @@ import movieRouter from "../router/movie.router";
 import path from "path";
 import theaterRouter from "../router/theater.router";
 import showRouter from "../router/show.router"
+import screenRouter from "../router/screen.router";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(UserRouter)
 app.use(movieRouter)
 app.use(theaterRouter)
 app.use(showRouter)
+app.use(screenRouter)
 // Error-handling middleware
 app.use((error: CustomError, req: Request, res: Response, next: NextFunction) => {
   const statusCode = error.statusCode || 400;
