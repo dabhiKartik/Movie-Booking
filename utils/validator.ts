@@ -31,7 +31,7 @@ export const validMobileNumber = (mobileNumber: string) => {
     return phoneNumber.formatInternational();
 };
 
-export const validDate =(releaseDate: string )=>{
+export const validDate =(releaseDate: string ):string=>{
 if(!validator.isDate(releaseDate,{format:'DD-MM-YYYY',strictMode:true})) throw new Error("please provide valid Date formate")
     return releaseDate;
 }  

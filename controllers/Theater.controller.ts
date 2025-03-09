@@ -25,7 +25,7 @@ export const AddTheater = async (req: Request, res: Response, next: NextFunction
         const theater = await Theater.create({
             name,
             location,
-            screens,  
+           
         });
 
         res.status(201).json({
